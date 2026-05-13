@@ -1,45 +1,44 @@
-LineageOS
-===========
+![Evolution X](https://github.com/Evolution-X/manifest/raw/bq2/Banner.png)
 
-Getting started
----------------
+# Evolution X for OnePlus 15 / 15T / 15R / Ace 6T
 
-To get started with Android/LineageOS, you'll need to get familiar with [Source Control Tools](https://source.android.com/setup/develop).
+## Initialize local repository
 
-To initialize your local repository using the LineageOS trees, use a command like this:
+```bash
+repo init -u https://github.com/OnePlus-SM8850-Development/android.git -b bq2 --git-lfs
 ```
-repo init -u https://github.com/OnePlus-SM8850-Development/android.git -b lineage-23.2 --git-lfs
-```
-Then to sync up:
-```
-repo sync
-```
-# Build LineageOS on OnePlus 15 / 15R / Ace 6T
 
-# Set up environment
+## Sync up
+
+```bash
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+```
+
+## Build
+
+### Set up environment
+
 ```bash
 . build/envsetup.sh
 ```
 
-# Build the code
+### Build the code
+
 ```bash
 brunch <codename>
 ```
 
-Submitting patches
-------------------
-Patches are always welcome! Please submit your patches via LineageOS Gerrit!
+Or manually:
+
+```bash
+lunch lineage_<codename>-bp4a-userdebug
+m evolution
+```
+
+## Submitting patches
+
+Patches are always welcome! Please submit your patches via LineageOS Gerrit or open a pull request.
 
 Simply follow our guide on [how to submit patches](https://wiki.lineageos.org/submitting-patch-howto.html).
 
 To view the status of your and others' patches, visit [LineageOS Gerrit Code Review](https://review.lineageos.org/).
-
-
-Buildbot
---------
-
-All supported devices are built weekly and periodically as changes are committed to ensure the source trees remain buildable.
-
-You can view the current build statuses at [LineageOS Buildkite](https://buildkite.com/lineageos).
-
-Builds produced weekly by the buildbot can be downloaded from [LineageOS downloads](https://download.lineageos.org/).
