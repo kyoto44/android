@@ -98,7 +98,6 @@
   <project path="libcore" name="libcore" groups="pdk" remote="evo" revision="bq2" />
 
   <!-- LineageOS additions -->
-  <project path="axion-sdk" name="axion-sdk" remote="evo" revision="bq2" />
   <project path="lineage-sdk" name="lineage-sdk" remote="evo" revision="bq2" />
 
   <!-- Packages -->
@@ -147,5 +146,4 @@
   <project path="vendor/gms" name="vendor_gms" remote="evo-gitea" clone-depth="1" revision="bq2" />
   <project path="vendor/lineage" name="vendor_evolution" remote="kyoto44" revision="bq2" />
   <project path="vendor/pixel-style" name="vendor_pixel-style" remote="evo" revision="bq2" />
-  <project path="vendor/themes" name="vendor_themes" remote="evo" revision="bq2" />
 </manifest>
