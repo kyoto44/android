@@ -1,44 +1,82 @@
-![Evolution X](https://github.com/Evolution-X/manifest/raw/bq2/Banner.png)
+![Project Infinity X](https://raw.githubusercontent.com/ProjectInfinity-X/.github/main/profile/Infinity.png)
 
-# Evolution X for OnePlus 15 / 15T / 15R / Ace 6T
+# Project Infinity X for OnePlus 15 / 15T / 15R / Ace 6T
 
-## Initialize local repository
+## Requirements:
+Before you begin, ensure your system meets the following requirements:
+- [Repo](https://source.android.com/source/using-repo.html)
+- [Git](https://source.android.com/source/version-control.html)
+- Git Large File Storage (Git LFS)
 
+## Initialization and Syncing:
+
+1. Initialize your local repository:
+    ```bash
+    repo init --no-repo-verify --git-lfs -u https://github.com/kyoto44/android.git -b 16 -g default,-mips,-darwin,-notdefault
+    ```
+   Or if you wish to save some system space and don't care about repo history depths:
+    ```bash
+    repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/kyoto44/android.git -b 16 -g default,-mips,-darwin,-notdefault
+    ```
+
+2. Sync up with the remote repository:
+    ```bash
+    repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+    ```
+
+## Compilation of Project Infinity X:
+
+### Build Flags
 ```bash
-repo init -u https://github.com/OnePlus-SM8850-Development/android.git -b bq2 --git-lfs
+# Maintainer Name
+INFINITY_MAINTAINER := "YourInput" (Default: Unknown)
+
+# Whether the device supports Fingerprint On Display
+TARGET_HAS_UDFPS := true/false (Default: false)
+
+# Whether Including Google Apps
+WITH_GAPPS := true/false (Default: true)
 ```
 
-## Sync up
-
+### About Phone Definitions
 ```bash
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+# Add these as system properties (in system.prop file), You may use utilities as libinit if configuring for unified devices
+ro.product.marketname
+ro.infinity.soc
+ro.infinity.camera
+
+# Example Definitions
+ro.product.marketname=OnePlus 15
+ro.infinity.soc=Snapdragon 8 Elite
+ro.infinity.camera=50MP + 50MP + 50MP
 ```
 
-## Build
+### Setup Environment:
+1. Navigate to the root directory:
+    ```bash
+    cd path/to/source
+    ```
+2. Run the environment setup script:
+    ```bash
+    . build/envsetup.sh
+    ```
 
-### Set up environment
+### Build Configuration:
+1. Choose your device configuration:
+    ```bash
+    lunch infinity_<codename>-bp4a-userdebug
+    ```
 
-```bash
-. build/envsetup.sh
-```
+2. Build the code:
+    ```bash
+    mka infinity
+    ```
 
-### Build the code
-
+Or simply:
 ```bash
 brunch <codename>
 ```
 
-Or manually:
-
-```bash
-lunch lineage_<codename>-bp4a-userdebug
-m evolution
-```
-
 ## Submitting patches
 
-Patches are always welcome! Please submit your patches via LineageOS Gerrit or open a pull request.
-
-Simply follow our guide on [how to submit patches](https://wiki.lineageos.org/submitting-patch-howto.html).
-
-To view the status of your and others' patches, visit [LineageOS Gerrit Code Review](https://review.lineageos.org/).
+Patches are always welcome! Please open a pull request on GitHub.
